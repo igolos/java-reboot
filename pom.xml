@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ru.sberbank.edu</groupId>
-  <artifactId>homework-javareboot-2023-group-06</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>module01</module>
-    <module>module02</module>
-  </modules>
-  <packaging>pom</packaging>
+    <groupId>ru.sberbank.edu</groupId>
+    <artifactId>homework-javareboot-2023-group-06</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>module01</module>
+        <module>module02</module>
+        <module>module03</module>
+    </modules>
+    <packaging>pom</packaging>
 
-  <name>homework-javareboot-2023-group-06</name>
-
+    <name>homework-javareboot-2023-group-06</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
