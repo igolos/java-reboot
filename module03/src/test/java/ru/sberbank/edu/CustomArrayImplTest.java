@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CustomArrayImplTest {
 
 
-    CustomArrayImpl<Integer> intArray = new CustomArrayImpl<>();
+    CustomArrayImpl<Integer> intArray = new CustomArrayImpl<>(10);
+
 
 
     @Test
@@ -90,10 +91,15 @@ class CustomArrayImplTest {
     }
     @Test
     public void checkGetCapacity(){
-        for(int i=0;i<200;i++){
+        for(int i=0;i<11;i++){
             intArray.add(i);
         }
-       assertEquals(200, intArray.getCapacity());
+       assertEquals(16, intArray.getCapacity());
+
+        for(int i=0;i<11;i++){
+            intArray.add(i);
+        }
+        assertEquals(25, intArray.getCapacity());
     }
     @Test
     public void checkReverse() {
