@@ -9,10 +9,10 @@ public class CustomArrayImpl<T>  implements CustomArray<T> {
     private ArrayList<T> arrayList;
 
     private int capacity;
-//    public CustomArrayImpl() {
-//        this.arrayList = new ArrayList<>();
-//        this.capacity = 10;
-//    }
+    public CustomArrayImpl() {
+        this.arrayList = new ArrayList<>();
+        this.capacity = 10;
+    }
     public CustomArrayImpl(int initialCapacity) {
         this.arrayList = new ArrayList<>(initialCapacity);
         this.capacity = initialCapacity;
