@@ -93,7 +93,7 @@ public class TravelService {
             double cl2 = Math.cos(destPosition.getLatitude());
             double sl1 = Math.sin(srcPosition.getLatitude());
             double sl2 = Math.sin(destPosition.getLatitude());
-            double delta = destPosition.getLongitude() - srcPosition.getLatitude();
+            double delta = destPosition.getLongitude() - srcPosition.getLongitude();
             double cdelta = Math.cos(delta);
             double sdelta = Math.sin(delta);
 
