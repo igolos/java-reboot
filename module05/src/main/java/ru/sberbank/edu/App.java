@@ -23,6 +23,7 @@ public class App {
 
 
         System.out.println(service.getDistance("Moscow","Rostov-na-Donu"));
+        System.out.println(service.getCitiesNear("Moscow",2000));
 
     }
 }

@@ -119,6 +119,23 @@ public class TravelService {
      * @throws IllegalArgumentException if city with cityName city doesn't exist.
      */
             public List<String> getCitiesNear(String cityName, int radius) {
-             return null;
+                boolean srcCityNameInList = cities.stream()
+                        .anyMatch(city -> city.getName().equals(cityName));
+                if(!srcCityNameInList) {
+                    throw new IllegalArgumentException("City doesn't exist");
+                } else {
+                    GeoPosition srcPosition = cities.stream()
+                            .filter(city -> city.getName().equals(cityName))
+                            .findAny()
+                            .map(CityInfo::getPosition)
+                            .orElseThrow();
+
+                    List<String> cityInfo=cities.stream()
+                            .map(CityInfo::getName)
+                            .filter(name -> !name.equals(cityName))
+                            .filter(name ->getDistance(name,cityName)<radius)
+                            .collect(Collectors.toList());
+                    return cityInfo;
+                    }
+                }
     }
-}
