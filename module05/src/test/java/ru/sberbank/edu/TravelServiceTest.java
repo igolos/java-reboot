@@ -1,13 +1,13 @@
 package ru.sberbank.edu;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.jupiter.api.Test;
 
-/**
- * Hello world!
- */
-public class App {
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class TravelServiceTest {
+
+    @Test
+    void getDistance() {
         GeoPosition omskPosition = new GeoPosition(54, 59, 47, 73, 22, 20);
         GeoPosition moscowPosition = new GeoPosition(55, 45, 21, 37, 37, 1);
         GeoPosition rostovPosition = new GeoPosition(47, 14, 53, 39, 42, 39);
@@ -19,10 +19,6 @@ public class App {
         service.add(moscow);
         service.add(omsk);
         service.add(rostov);
-
-
-
-        System.out.println(service.getDistance("Moscow","Rostov-na-Donu"));
-
+        assertEquals(957,service.getDistance(rostov.getName(),moscow.getName()));
     }
 }

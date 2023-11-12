@@ -118,7 +118,7 @@ public class TravelService {
      * @param radius   - radius in kilometers for search
      * @throws IllegalArgumentException if city with cityName city doesn't exist.
      */
-            ; public List<String> getCitiesNear(String cityName, int radius) {
-        return null;
+            public List<String> getCitiesNear(String cityName, int radius) {
+             return null;
     }
 }
