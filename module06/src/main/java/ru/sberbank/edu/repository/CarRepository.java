@@ -6,5 +6,5 @@ import java.sql.SQLException;
 import java.util.Set;
 
 public interface CarRepository extends Repository<Car, String> {
-    Set<Car> findByModel(String model) throws SQLException;
+    Set<Car> findByModel(String model);
 }
