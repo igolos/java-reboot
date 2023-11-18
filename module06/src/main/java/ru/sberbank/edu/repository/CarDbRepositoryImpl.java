@@ -60,16 +60,20 @@ public class CarDbRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public Set<Car> createAll(Collection<Car> cars) throws SQLException {
+    public Set<Car> createAll(Collection<Car> cars) {
         Set<Car> carSet = new HashSet<>();
+try (PreparedStatement statement=createPreStmt){
+    for (Car car : cars) {
+        statement.setString(1, car.getId());
+        statement.setString(2, car.getModel());
 
-        for (Car car : cars) {
-            createPreStmt.setString(1, car.getId());
-            createPreStmt.setString(2, car.getModel());
+        statement.executeUpdate();
+        carSet.add(car);
+    }
+}catch (Exception e){
+    throw new RuntimeException();
+}
 
-            createPreStmt.executeUpdate();
-            carSet.add(car);
-        }
         return carSet;
     }
 
