@@ -30,25 +30,28 @@ public class WeatherCache {
      * @return actual weather info
      */
     public synchronized WeatherInfo getWeatherInfo(String city) {
-        WeatherInfo weatherInfo=null;
+        WeatherInfo weatherInfo = null;
 
-       try {
-           if (!cache.containsKey(city) || cache.get(city).getExpiryTime().isBefore(LocalDateTime.now().minusMinutes(5))) {
-               weatherInfo = weatherProvider.get(city);
-               cache.put(city, weatherInfo);
-               System.out.println(cache.get(city));
-               return cache.get(city);
-           } else if (cache.containsKey(city)) {
-               weatherInfo = cache.get(city); // assign and return weatherInfo
-               System.out.println(weatherInfo);
-               return weatherInfo;
-           }
-       } catch (Exception e){
-           e.printStackTrace();
-       }
-        return null;
+        try {
+            if (!cache.containsKey(city) || cache.get(city).getExpiryTime().isBefore(LocalDateTime.now().minusMinutes(5))) {
+                weatherInfo = weatherProvider.get(city);
+                cache.put(city, weatherInfo);
+                if (cache.get(city) == null) {
+                    cache.remove(city);
+                } else {
+                    System.out.println(cache.get(city));
+                    return cache.get(city);
+                }
+            } else if (cache.containsKey(city)) {
+                weatherInfo = cache.get(city);
+                //  System.out.println(weatherInfo);
+                return weatherInfo;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return weatherInfo;
     }
-
 
 
     /**

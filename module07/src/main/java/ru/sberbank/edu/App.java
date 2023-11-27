@@ -8,10 +8,15 @@ import java.util.concurrent.Executors;
  */
 public class App {
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
         try{
         WeatherProvider weatherProvider = new WeatherProvider();
         WeatherCache weatherCache=new WeatherCache(weatherProvider);
+            executorService.submit(() -> {
+                printThreadInfo();
+                weatherCache.getWeatherInfo("qwerty");
+            });
         executorService.submit(() -> {
             printThreadInfo();
             weatherCache.getWeatherInfo("Moscow");
@@ -46,5 +51,5 @@ public class App {
     private static void printThreadInfo() {
         Thread currentThread = Thread.currentThread();
         System.out.println("Thread ID: " + currentThread.getId() + ", Thread Name: " + currentThread.getName());
-    }
+   }
 }
