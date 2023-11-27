@@ -33,7 +33,7 @@ public class WeatherCache {
         WeatherInfo weatherInfo=null;
 
        try {
-           if (!cache.containsKey(city) || cache.get(city).getExpiryTime().isBefore(LocalDateTime.now().minusMinutes(1))) {
+           if (!cache.containsKey(city) || cache.get(city).getExpiryTime().isBefore(LocalDateTime.now().minusMinutes(5))) {
                weatherInfo = weatherProvider.get(city);
                cache.put(city, weatherInfo);
                System.out.println(cache.get(city));
