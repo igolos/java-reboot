@@ -1,8 +1,26 @@
 package ru.sberbank.edu;
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+
+import java.net.URI;
+
+
+import java.time.LocalDateTime;
+
+
 public class WeatherProvider {
 
-    //    private RestTemplate restTemplate = null;
+
+    private static final String URL = "http://api.openweathermap.org";
+    private static final String API_KEY = "0747854889560766e711233fbdd2e937";
+
 
     /**
      * Download ACTUAL weather info from internet.
@@ -13,6 +31,39 @@ public class WeatherProvider {
      * @return weather info or null
      */
     public WeatherInfo get(String city) {
-        return null;
+        RestTemplate restTemplate = new RestTemplate();
+        WeatherInfo weatherInfo = null;
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=0747854889560766e711233fbdd2e937", String.class);
+            if (responseEntity.getStatusCode().is2xxSuccessful()) {
+
+                String jsonResponse = responseEntity.getBody();
+                ObjectMapper objectMapper = new ObjectMapper();
+
+
+                JsonNode root = objectMapper.readTree(jsonResponse);
+
+                String cityName = root.path("name").asText();
+                String shortDescription = root.path("weather").get(0).path("main").asText();
+                String description = root.path("weather").get(0).path("description").asText();
+                double temperature = root.path("main").path("temp").asDouble();
+                double feelsLikeTemperature = root.path("main").path("feels_like").asDouble();
+                double windSpeed = root.path("wind").path("speed").asDouble();
+                double pressure = root.path("main").path("pressure").asDouble();
+                LocalDateTime expiryTime = LocalDateTime.now();
+
+                weatherInfo = new WeatherInfo(cityName, shortDescription, description, temperature, feelsLikeTemperature, windSpeed, pressure, expiryTime);
+            }
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+                System.out.println("City not found: " + city);
+            } else {
+                System.out.println("Unexpected HTTP status: " + e.getStatusCode().value());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return weatherInfo;
     }
 }
