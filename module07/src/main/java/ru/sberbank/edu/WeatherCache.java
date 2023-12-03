@@ -57,7 +57,7 @@ public class WeatherCache {
     /**
      * Remove weather info from cache.
      **/
-    public void removeWeatherInfo(String city) {
+    public synchronized void  removeWeatherInfo(String city) {
         // should be implemented
         cache.remove(city);
     }
