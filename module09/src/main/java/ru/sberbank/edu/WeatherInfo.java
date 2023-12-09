@@ -2,10 +2,39 @@ package ru.sberbank.edu;
 
 import java.time.LocalDateTime;
 
-/**
- * Weather info.
- */
 public class WeatherInfo {
+    public String getCity() {
+        return city;
+    }
+
+    public LocalDateTime getExpiryTime() {
+        return expiryTime;
+    }
+
+    public WeatherInfo(String city, String shortDescription, String description, double temperature, double feelsLikeTemperature, double windSpeed, double pressure, LocalDateTime expiryTime) {
+        this.city = city;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.temperature = temperature;
+        this.feelsLikeTemperature = feelsLikeTemperature;
+        this.windSpeed = windSpeed;
+        this.pressure = pressure;
+        this.expiryTime = expiryTime;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherInfo{" +
+                "city='" + city + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", temperature=" + temperature +
+                ", feelsLikeTemperature=" + feelsLikeTemperature +
+                ", windSpeed=" + windSpeed +
+                ", pressure=" + pressure +
+                ", expiryTime=" + expiryTime +
+                '}';
+    }
 
     private String city;
 
