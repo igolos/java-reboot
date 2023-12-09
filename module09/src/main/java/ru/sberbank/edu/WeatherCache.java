@@ -41,7 +41,7 @@ public class WeatherCache {
                 if (cache.get(city) == null) {
                     cache.remove(city);
                 } else {
-                    System.out.println(cache.get(city));
+                 //   System.out.println(cache.get(city));
                     return cache.get(city);
                 }
             } else if (cache.containsKey(city)) {
