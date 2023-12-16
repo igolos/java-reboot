@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @org.springframework.stereotype.Controller
-@RequestMapping(value = "/get")
+@RequestMapping(value = "/")
 public class Controller {
 
-    @GetMapping
+    @GetMapping(path = "/finance")
     public ModelAndView info(){
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("/ru.jsp");
