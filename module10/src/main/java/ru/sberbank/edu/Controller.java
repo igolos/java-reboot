@@ -11,7 +11,7 @@ public class Controller {
     @GetMapping
     public ModelAndView info(){
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("/src/main/webapp/WEB-INF/index.html");
+        modelAndView.setViewName("/ru.jsp");
         return modelAndView;
     }
 }
