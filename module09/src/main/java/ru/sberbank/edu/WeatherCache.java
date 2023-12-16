@@ -1,20 +1,25 @@
 package ru.sberbank.edu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * Weather cache.
- */
 public class WeatherCache {
 
     private final Map<String, WeatherInfo> cache = new HashMap<>();
-    private WeatherProvider weatherProvider;
+    private final WeatherProvider weatherProvider;
 
     /**
-     * Default constructor.
+     * Constructor.
+     *
+     * @param weatherProvider - weather provider
      */
-    public WeatherCache() {
+    public WeatherCache(WeatherProvider weatherProvider) {
+        this.weatherProvider = weatherProvider;
     }
 
     /**
@@ -26,15 +31,36 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
+    public synchronized WeatherInfo getWeatherInfo(String city) {
+        WeatherInfo weatherInfo = null;
+
+        try {
+            if (!cache.containsKey(city) || cache.get(city).getExpiryTime().isBefore(LocalDateTime.now().minusMinutes(5))) {
+                weatherInfo = weatherProvider.get(city);
+                cache.put(city, weatherInfo);
+                if (cache.get(city) == null) {
+                    cache.remove(city);
+                } else {
+                 //   System.out.println(cache.get(city));
+                    return cache.get(city);
+                }
+            } else if (cache.containsKey(city)) {
+                weatherInfo = cache.get(city);
+                //  System.out.println(weatherInfo);
+                return weatherInfo;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return weatherInfo;
     }
+
 
     /**
      * Remove weather info from cache.
      **/
-    public void removeWeatherInfo(String city) {
+    public synchronized void  removeWeatherInfo(String city) {
         // should be implemented
+        cache.remove(city);
     }
 }
