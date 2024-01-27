@@ -7,12 +7,12 @@ services:
       - "8082:8082"
 
   app:
-    image: nameimage
+    image: spring-image
     ports:
       - "8080:8080"
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:h2:tcp://db:1521/mydatabase
+      SPRING_DATASOURCE_URL: dbc:h2:file:./app.db
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password
