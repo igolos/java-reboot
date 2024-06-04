@@ -1,0 +1,84 @@
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+{
+    "state": "login"
+}
+Request method:	GET
+Request URI:	https://efs-sbbol-ift-web.testsbi.sberbank.ru:9443/ic/sbbid/api/v1/oauth/authorize?redirect_uri=https%3A%2F%2Fmail.ru&scope=openid%20nominal_accounts_1&client_id=9223376456675586&response_type=code&state=test_01&nonce=test_01
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+Cookies:		sbbid_session_id=a2ba0bfd-e6b0-4a6a-b233-e5e55520ebd9
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 302 Found
+Server: SynGX
+Date: Mon, 03 Jun 2024 14:27:50 GMT
+Content-Length: 0
+Connection: keep-alive
+location: https://mail.ru?code=hu3nYZMUVIhlQiM4hWp1wOx6QnMhW4LQsN9uMh&state=test_01
+x-envoy-upstream-service-time: 78
+Allow: GET, POST, HEAD
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Request method:	POST
+Request URI:	https://iftfintech.testsbi.sberbank.ru:9443/ic/sso/api/oauth/token?code=hu3nYZMUVIhlQiM4hWp1wOx6QnMhW4LQsN9uMh&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fmail.ru&client_secret=123456&client_id=9223376456675586
+Proxy:			<none>
+Request params:	<none>
+Query params:	code=hu3nYZMUVIhlQiM4hWp1wOx6QnMhW4LQsN9uMh
+				grant_type=authorization_code
+				redirect_uri=https://mail.ru
+				client_secret=123456
+				client_id=9223376456675586
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/x-www-form-urlencoded; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: SynGX/1.3.0 (based on nginx-1.22.1)
+Date: Mon, 03 Jun 2024 14:27:51 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 6730
+Connection: keep-alive
+cache-control: no-store
+pragma: no-cache
+x-envoy-upstream-service-time: 264
+accept-ranges: bytes
+allow: GET, POST, HEAD, DELETE, PUT, PATCH
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+strict-transport-security: max-age=31536000; includeSubDomains
+
+{
+    "access_token": "zDao7reUcjIG5mhcTblouAwplBNza9DAedaDaH",
+    "token_type": "Bearer",
+    "expires_in": 4800,
+    "refresh_token": "pLMtF1zf2JQ6DYI0GSQf3Q7KY9J7hdc6DkPe9R",
+    "scope": "openid",
+    "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJnb3N0MzQuMTAtMjAxMiJ9.eyJhdWQiOiI5MjIzMzc2NDU2Njc1NTg2IiwiYWNyIjoibG9hLTMiLCJzdWIiOiJmODJmZWU5YmE5NTUyZmNiM2JiOWZhZTI3YTQwNmZkMzI3MzA3MmYwZWRlZjAwZTA1ZDlmNjZjNWQyZTZhZjM4IiwiYXpwIjoiOTIyMzM3NjQ1NjY3NTU4NiIsImFtciI6Intwd2R9IiwiYXV0aF90aW1lIjoxNzE3NDI0ODcwLCJpc3MiOiJlZnMtc2Jib2wtaWZ0LXdlYi50ZXN0c2JpLnNiZXJiYW5rLnJ1Ojk0NDMiLCJleHAiOjE3MTc0MjUxNzYsImlhdCI6MTcxNzQyNDg3MSwibm9uY2UiOiJ0ZXN0XzAxIn0.MIAGCSqGSIb3DQEHAqCAMIACAQExDDAKBggqhQMHAQECAjCABgkqhkiG9w0BBwEAAKCAMIIFcDCCBR2gAwIBAgIKfBgexsY1wT30STAKBggqhQMHAQEDAjCCAYcxFTATBgUqhQNkBBIKNzcwNzA4Mzg5MzEdMBsGCSqGSIb3DQEJARYOdGVzdEBzYnJmLnRlc3QxGDAWBgUqhQNkARINMTAyNzcwMDEzMjE5NTELMAkGA1UEBhMCUlUxGDAWBgNVBAgMDzc3INCc0L7RgdC60LLQsDEZMBcGA1UEBwwQ0LMuINCc0L7RgdC60LLQsDEnMCUGA1UECQwe0YPQtCfMUswSQYDVQQDDELQotC10YHRgtC+0LLRi9C5INC40LfQtNCw0YLQtdC70Ywg0J/QkNCeINCh0LHQtdGA0LHQsNC90Log0JrQodCa0J8CCnwYHsbGNcE99EkwCgYIKoUDBwEBAQEEQDpwo23UR1aUTM3t0nHZnv/Rw1HPuJW6iDnsNhxX2d6FOv/LdemM7/R9zPgLLxBRQadCe+3v4Kurm5UE3l0r0OyhAAAAAAAAAA=="
+}
+
+
+ public static String getAuthToken() throws IOException, InterruptedException {
+        String command = "java -cp ssoutils.jar org.test.Main";
+        ProcessBuilder builder = new ProcessBuilder(command.split(" "));
+        builder.directory(new File("ssoutils"));
+        Process p = builder.start();
+        p.waitFor();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        StringBuilder output = new StringBuilder();
+        String line;
+        while ((line = r.readLine()) != null) {
+            output.append(line);
+           // output.append(System.lineSeparator());
+        }
+        r.close();
