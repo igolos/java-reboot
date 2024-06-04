@@ -82,3 +82,15 @@ strict-transport-security: max-age=31536000; includeSubDomains
            // output.append(System.lineSeparator());
         }
         r.close();
+
+com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Request': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (String)"Request method:\u0009GETRequest URI:\u0009https://efs-sbbol-ift-web.testsbi.sberbank.ru:9443/ic/sso/api/oauth/authorize?redirect_uri=https%3A%2F%2Fmail.ru&scope=openid%20nominal_accounts_1&client_id=9223376456675586&response_type=code&state=test_01&nonce=test_01Proxy:\u0009\u0009\u0009<none>Request params:\u0009<none>Query params:\u0009<none>Form params:\u0009<none>Path params:\u0009<none>Headers:\u0009\u0009Accept=*/*Cookies:\u0009\u0009<none>Multiparts:\u0009\u0009<none>Body:\u0009\u0009\u0009<none>HTTP/1.1 302 Moved TemporarilyServer: SynGXDate: Tue, 04 Jun 2024 06:39:15 GMTConten"[truncated 11350 chars]; line: 1, column: 8]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2477)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:760)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:3041)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2082)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:808)
+	at com.fasterxml.jackson.databind.ObjectMapper._readTreeAndClose(ObjectMapper.java:4854)
+	at com.fasterxml.jackson.databind.ObjectMapper.readTree(ObjectMapper.java:3219)
+	at bodygenerator.AuthUtils.getAuthToken(AuthUtils.java:38)
+	at bodygenerator.AuthUtils.main(AuthUtils.java:71)
